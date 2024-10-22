@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface Player {
-    id: string;
+    id: number;
     username: string;
     games: number;
     win: number;
