@@ -1,0 +1,93 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "username": "Modoari",
+      "games": 10,
+      "win": 7,
+      "loss": 3,
+      "ratio": 2.33
+    },
+    
+    {
+      "id": 2,
+      "username": "Batman",
+      "games": 10,
+      "win": 8,
+      "loss": 2,
+      "ratio": 4.0
+    },
+    {
+      "id": 3,
+      "username": "Robin",
+      "games": 7,
+      "win": 5,
+      "loss": 2,
+      "ratio": 2.5
+    },
+    {
+      "id": 4,
+      "username": "Joker",
+      "games": 6,
+      "win": 3,
+      "loss": 3,
+      "ratio": 1.0
+    },
+    {
+      "id": 5,
+      "username": "Catwoman",
+      "games": 8,
+      "win": 6,
+      "loss": 2,
+      "ratio": 3.0
+    },
+    {
+      "id": 6,
+      "username": "Alfred",
+      "games": 5,
+      "win": 3,
+      "loss": 2,
+      "ratio": 1.5
+    },
+    {
+      "id": 7,
+      "username": "HarleyQuinn",
+      "games": 4,
+      "win": 1,
+      "loss": 3,
+      "ratio": 0.33
+    },
+    {
+      "id": 8,
+      "username": "Riddler",
+      "games": 5,
+      "win": 2,
+      "loss": 3,
+      "ratio": 0.67
+    },
+    {
+      "id": 9,
+      "username": "TwoFace",
+      "games": 6,
+      "win": 3,
+      "loss": 3,
+      "ratio": 1.0
+    },
+    {
+      "id": 10,
+      "username": "Bane",
+      "games": 5,
+      "win": 4,
+      "loss": 1,
+      "ratio": 4.0
+    },
+    {
+      "id": 11,
+      "username": "CommissionerGordon",
+      "games": 7,
+      "win": 5,
+      "loss": 2,
+      "ratio": 2.5
+    }
+  ]
+}
