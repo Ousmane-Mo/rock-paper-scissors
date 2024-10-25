@@ -1,7 +1,8 @@
 "use client"
 import React, {useState} from "react";
+import { Player } from "../components/table";
 
-const Rpc = () => {
+const Rpc = ({username}: {username: string}) => {
   // Game State
   // ----------
   // The following state variables are used to track the game's progress.
@@ -15,6 +16,21 @@ const Rpc = () => {
   const [playerWins, setPlayerWins] = useState(0);
   const [computerWins, setComputerWins] = useState(0);
   const [message, setMessage] = useState('');
+
+  /**
+   * Fetch the player
+   * 
+   * This function fetches the current player
+   * 
+   * @param {string} username Players username
+   * @returns {Player[]} Returns the player's data as a Player[] object
+  */
+  async function fetchPlayerData(username: string) {
+    const response = await fetch('http://localhost:4000/players?username=' + username);
+    const playerData: Player[] = await response.json();
+    return playerData[0]; // Return the existing player data
+
+  }
 
   /**
    * Generate Computer Choice
@@ -68,6 +84,7 @@ const Rpc = () => {
 
     // Check for game over after updating rounds
     checkGameOver(newRoundsWons, newRoundsLost);
+
   }
 
   /**
@@ -83,11 +100,51 @@ const Rpc = () => {
       setMessage("You are the winner of this best of 3! Gg!");
       setPlayerWins(prev => prev + 1);
       setGamesPlayed(prev => prev + 1);
+
+      // Update player's stats after checking game over
+      updatePlayersStats(username, 1, 0);
+      
     } else if (roundsLost === 2) {
       setMessage("The computer is the winner of this best of 3! Try again!");
       setComputerWins(prev => prev + 1);
       setGamesPlayed(prev => prev + 1);
+
+      // Update player's stats after checking game over
+      updatePlayersStats(username, 0, 1);
     }
+
+  }
+
+  /**
+   * Update the player's stats
+   * 
+   * @param {string} username
+   */
+  async function updatePlayersStats(username: string, wins: number, loss: number) {
+    const playerData = await fetchPlayerData(username); 
+    
+    const updatedGamesPlayed = playerData.games + 1 ;
+    const updatedWins = playerData.win + wins ;
+    const updatedLoss = playerData.loss + loss ;
+    const updatedRatio = (updatedWins/updatedLoss).toFixed(2) ;
+
+    const response = await fetch('http://localhost:4000/players/' + playerData.id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: playerData.id,
+          username: playerData.username,
+          games: updatedGamesPlayed ,
+          win: updatedWins ,
+          loss: updatedLoss ,
+          ratio: updatedRatio
+        })
+    });
+    const jsonResponse = await response.json();
+    console.log('Player\'s stats updated');
+    console.log(jsonResponse);
   }
 
   /**
@@ -108,6 +165,7 @@ const Rpc = () => {
   return(
     <div className="my-3 text-center">
       <h2 className="text-center text-2xl my-2 underline underline-offset-2 ">Now let&apos;s play</h2>
+      <p>You are playing as {username}</p>
       <div className="my-2 py-3 px-4 border-2 bg-slate-800 text-neutral-100 border-amber-500 rounded-3xl">
         <div className="flex justify-evenly my-2">
           <button 
