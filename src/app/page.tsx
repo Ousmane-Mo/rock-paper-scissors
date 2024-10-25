@@ -1,7 +1,17 @@
 "use client"
 import React, {useState, useEffect} from "react";
-import Table, {Player} from "./components/table";
+import Table from "./components/table";
 import Rpc from "./game/page";
+
+// Define the Player interface to specify the structure of player data
+export interface Player {
+  id: number;
+  username: string;
+  games: number;
+  win: number;
+  loss: number;
+  ratio: number;
+}
 
 export default function Home() {
   const [players, setPlayers] = useState<Player[]>([]);

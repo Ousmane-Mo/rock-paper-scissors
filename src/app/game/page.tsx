@@ -1,6 +1,6 @@
 "use client"
 import React, {useState} from "react";
-import { Player } from "../components/table";
+import { Player } from "../page";
 
 const Rpc = ({username}: {username: string}) => {
   // Game State
