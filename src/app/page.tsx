@@ -20,11 +20,20 @@ export default function Home() {
   
 
     // useEffect to fetch players from the server when the component mounts
-  useEffect(() => {
-    fetch('http://localhost:4000/players')
-    .then(response => response.json())
-    .then(data => setPlayers(data)); // Update players state with fetched data
-  }, []);// Empty dependency array means this runs once on mount
+    useEffect(() => {
+      fetch('http://localhost:4000/players')
+      .then(response => response.json())
+      .then(data => {
+        const sortedPlayers = data.sort((a: Player, b: Player) => {
+          if (b.win != a.win) {
+            return b.win - a.win;
+          } else {
+            return b.games - a.games;
+          }
+        });
+        setPlayers(sortedPlayers);
+      });
+    }, []);
 
   const limitedPlayers = players.slice(0, 5);
 

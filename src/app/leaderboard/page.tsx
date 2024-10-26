@@ -20,6 +20,7 @@ const Leaderboard: React.FC = () => {
       setPlayers(sortedPlayers);
     });
   }, []);
+  const limitedPlayers = players.slice(0, 10);
 
   return(
 
@@ -29,7 +30,7 @@ const Leaderboard: React.FC = () => {
         <span className="text-sm text-black">Here lies the champions of this game</span>
       </div>
       <div className="flex justify-center">
-         <Table players={players} />
+         <Table players={limitedPlayers} />
       </div>
     </section>
   );
