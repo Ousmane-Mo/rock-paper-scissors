@@ -1,6 +1,7 @@
 "use client"
-import Table, {Player} from "../components/table";
+import Table from '../components/table';
 import React, {useState, useEffect} from 'react';
+import { Player } from '../page';
 
 const Leaderboard: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>([]);
@@ -8,7 +9,16 @@ const Leaderboard: React.FC = () => {
   useEffect(() => {
     fetch('http://localhost:4000/players')
     .then(response => response.json())
-    .then(data => setPlayers(data));
+    .then(data => {
+      const sortedPlayers = data.sort((a: Player, b: Player) => {
+        if (b.win != a.win) {
+          return b.win - a.win;
+        } else {
+          return b.games - a.games;
+        }
+      });
+      setPlayers(sortedPlayers);
+    });
   }, []);
 
   return(
