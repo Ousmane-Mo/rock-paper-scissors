@@ -3,25 +3,25 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 16
+      nodejs: 18
     commands:
-      - echo Installation des dépendances...
+      - echo "Installation des dépendances..."
       - npm ci
 
   pre_build:
     commands:
-      - echo Exécution des tests et du linting...
+      - echo "Exécution des tests et du linting..."
       - npm run lint
 
   build:
     commands:
-      - echo Construction de l'application...
+      - echo "Construction de l'application..."
       - npm run build
 
   post_build:
     commands:
-      - echo Construction terminée le `date`
-      - echo Préparation des fichiers pour le déploiement...
+      - echo "Construction terminée le $(date)"
+      - echo "Préparation des fichiers pour le déploiement..."
       - aws s3 sync .next/static s3://${S3_BUCKET}/next/static/ --delete
       - aws s3 sync public/ s3://${S3_BUCKET}/ --delete
       - aws s3 sync .next/server s3://${S3_BUCKET}/server/ --delete
