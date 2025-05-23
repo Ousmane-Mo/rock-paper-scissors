@@ -23,19 +23,10 @@ phases:
   post_build:
     commands:
       - echo "Deploying to S3..."
-      - aws s3 sync .next s3://${S3_BUCKET}/_next --delete
-      - aws s3 sync public s3://${S3_BUCKET} --delete
+      - aws s3 sync out/ s3://${S3_BUCKET}/ --delete
       - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
 
 artifacts:
   files:
-    - .next/**/*
-    - public/**/*
-    - package.json
-    - next.config.mjs
+    - "**/*"
   base-directory: "."
-
-cache:
-  paths:
-    - node_modules/**/*
-    - .next/cache/**/*
