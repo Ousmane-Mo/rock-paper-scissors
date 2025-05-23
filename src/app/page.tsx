@@ -112,7 +112,9 @@ export default function Home() {
               Play
             </button>
           </div>
-          {gameStarted && <Rps username={username || "Anonymous"} />}
+          {gameStarted && (
+            <Rps params={{ username: username || "Anonymous" }} />
+          )}
         </div>
         <div className="py-2">
           <h2 className="text-center text-2xl my-2">Leaderboard</h2>
