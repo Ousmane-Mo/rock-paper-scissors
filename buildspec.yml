@@ -1,49 +1,41 @@
 version: 0.2
 
+env:
+  variables:
+    NEXT_PUBLIC_API_URL: "https://api.your-domain.com"
+  parameter-store:
+    S3_BUCKET: "/rps/s3-bucket-name"
+    CLOUDFRONT_DISTRIBUTION_ID: "/rps/cloudfront-distribution-id"
+
 phases:
   install:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo "Installation des dépendances..."
+      - echo "Installing dependencies..."
       - npm ci
-
-  pre_build:
-    commands:
-      - echo "Exécution des tests et du linting..."
-      - npm run lint
 
   build:
     commands:
-      - echo "Construction de l'application..."
+      - echo "Building the Next.js application..."
       - npm run build
 
   post_build:
     commands:
-      - echo "Construction terminée le $(date)"
-      - echo "Préparation des fichiers pour le déploiement..."
-      - aws s3 sync .next/static s3://${S3_BUCKET}/next/static/ --delete
-      - aws s3 sync public/ s3://${S3_BUCKET}/ --delete
-      - aws s3 sync .next/server s3://${S3_BUCKET}/server/ --delete
+      - echo "Deploying to S3..."
+      - aws s3 sync .next s3://${S3_BUCKET}/_next --delete
+      - aws s3 sync public s3://${S3_BUCKET} --delete
       - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
 
 artifacts:
   files:
-    - ".next/**/*"
-    - "public/**/*"
-    - "package.json"
-    - "next.config.mjs"
-  discard-paths: no
+    - .next/**/*
+    - public/**/*
+    - package.json
+    - next.config.mjs
+  base-directory: "."
 
 cache:
   paths:
-    - "node_modules/**/*"
-    - ".next/cache/**/*"
-
-env:
-  variables:
-    S3_BUCKET: ""
-    CLOUDFRONT_DISTRIBUTION_ID: ""
-  parameter-store:
-    S3_BUCKET: "/rps/s3-bucket-name"
-    CLOUDFRONT_DISTRIBUTION_ID: "/rps/cloudfront-distribution-id"
+    - node_modules/**/*
+    - .next/cache/**/*
