@@ -15,7 +15,7 @@ export const useGame = (username: string) => {
 
   const fetchPlayerData = async (username: string) => {
     const response = await fetch(
-      "http://localhost:4000/players?username=" + username
+      `${process.env.NEXT_PUBLIC_API_URL}/players?username=${username}`
     );
     const playerData: Player[] = await response.json();
     return playerData[0];
@@ -38,7 +38,7 @@ export const useGame = (username: string) => {
     const updatedLoss = playerData.loss + loss;
     const updatedRatio = (updatedWins / updatedLoss).toFixed(2);
 
-    await fetch("http://localhost:4000/players/" + playerData.id, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/players/${playerData.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

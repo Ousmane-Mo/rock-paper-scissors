@@ -5,7 +5,7 @@ export const useLeaderboard = () => {
   const [players, setPlayers] = useState<Player[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/players")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/players`)
       .then((response) => response.json())
       .then((data) => {
         const sortedPlayers = data.sort((a: Player, b: Player) => {

@@ -11,7 +11,7 @@ export default function Home() {
 
   // useEffect to fetch players from the server when the component mounts
   useEffect(() => {
-    fetch("http://localhost:4000/players")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/players`)
       .then((response) => response.json())
       .then((data) => {
         const sortedPlayers = data.sort((a: Player, b: Player) => {
@@ -34,7 +34,7 @@ export default function Home() {
       return;
     }
     const existingPlayersResponse = await fetch(
-      "http://localhost:4000/players"
+      `${process.env.NEXT_PUBLIC_API_URL}/players`
     );
     const existingPlayers: Player[] = await existingPlayersResponse.json();
 
@@ -50,7 +50,7 @@ export default function Home() {
       setGameStarted(true);
       return;
     }
-    const response = await fetch("http://localhost:4000/players", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/players`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
