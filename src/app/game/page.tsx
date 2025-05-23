@@ -5,7 +5,11 @@ import { GameControls } from "@/lib/components/game/GameControls";
 import { GameStatus } from "@/lib/components/game/GameStatus";
 import { GameStats } from "@/lib/components/game/GameStats";
 
-const GamePage = ({ params }: { params: { username: string } }) => {
+type Props = {
+  params: { username: string };
+};
+
+export default function GamePage({ params }: Props) {
   const { username } = params;
   const {
     playerChoice,
@@ -48,6 +52,4 @@ const GamePage = ({ params }: { params: { username: string } }) => {
       </div>
     </div>
   );
-};
-
-export default GamePage;
+}
