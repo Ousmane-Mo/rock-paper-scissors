@@ -6,7 +6,7 @@ interface TableProps {
   }
 
 // Create the Table component using functional component syntax
-const Table: React.FC<TableProps> = ({players}) => {
+const Table: React.FC<TableProps> = ({players: Player[]}) => {
     return (
         <table className="my-6  w-3/4 text-center table-auto">
             <thead className="text-sm bg-slate-700 text-amber-500">
@@ -19,6 +19,7 @@ const Table: React.FC<TableProps> = ({players}) => {
               </tr>
             </thead>
             <tbody className="bg-neutral-100 border-b border-slate-800">
+
 
               {/* Map over the players array and create a table row for each player */}
               {players.map(player => (
