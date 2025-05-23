@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Player } from "@/lib/types/game";
 
-const Rpc = ({ username }: { username: string }) => {
+const Rps = ({ username }: { username: string }) => {
   // Game State
   // ----------
   // The following state variables are used to track the game's progress.
@@ -242,4 +242,4 @@ const Rpc = ({ username }: { username: string }) => {
     </div>
   );
 };
-export default Rpc;
+export default Rps;

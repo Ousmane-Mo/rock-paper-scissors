@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Table from "@/lib/components/leaderboard/leaderboard-table";
-import Rpc from "./game/page";
+import Rps from "./game/page";
 import { Player } from "@/lib/types/game";
 
 export default function Home() {
@@ -112,7 +112,7 @@ export default function Home() {
               Play
             </button>
           </div>
-          {gameStarted && <Rpc username={username || "Anonymous"} />}
+          {gameStarted && <Rps username={username || "Anonymous"} />}
         </div>
         <div className="py-2">
           <h2 className="text-center text-2xl my-2">Leaderboard</h2>

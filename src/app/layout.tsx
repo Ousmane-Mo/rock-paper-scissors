@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import {Plus_Jakarta_Sans} from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const PlusJakarta = Plus_Jakarta_Sans({subsets: ['latin']});
+const PlusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Rock Paper Scissors",
@@ -20,34 +20,70 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${PlusJakarta.className} antialiased bg-neutral-100 text-black`}>
+      <body
+        className={`${PlusJakarta.className} antialiased bg-neutral-100 text-black`}
+      >
         <header>
           <nav className="bg-slate-800">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-              <a href="/" className="text-2xl font-semibold text-neutral-100 hover:text-neutral-200">RPC</a>
-                <ul className="font-medium flex flex-row ">
-                  <li>
-                    <a href="/" className="py-2 px-3 text-neutral-100 hover:text-neutral-200 hover:underline hover:underline-offset-2" aria-current="page">Home</a>
-                  </li>
-                  <li>
-                    <a href="/leaderboard" className="py-2 px-3 text-neutral-100 hover:text-neutral-200 hover:underline hover:underline-offset-2">Leaderboard</a>
-                  </li>
-                </ul>
+              <a
+                href="/"
+                className="text-2xl font-semibold text-neutral-100 hover:text-neutral-200"
+              >
+                RPS
+              </a>
+              <ul className="font-medium flex flex-row ">
+                <li>
+                  <a
+                    href="/"
+                    className="py-2 px-3 text-neutral-100 hover:text-neutral-200 hover:underline hover:underline-offset-2"
+                    aria-current="page"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/leaderboard"
+                    className="py-2 px-3 text-neutral-100 hover:text-neutral-200 hover:underline hover:underline-offset-2"
+                  >
+                    Leaderboard
+                  </a>
+                </li>
+              </ul>
             </div>
           </nav>
         </header>
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
         <footer className="bg-slate-800 mt-6 sticky bottom-0 left-0 w-full">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex items-center justify-between">
-            <span className="text-sm text-neutral-500">© 2024 <a href="http://https://github.com/Ousmane-Mo" target="_blank" className="underline hover:text-amber-500">Ousmane-Mo</a>. All Rights Reserved.</span>
+            <span className="text-sm text-neutral-500">
+              © 2024{" "}
+              <a
+                href="http://https://github.com/Ousmane-Mo"
+                target="_blank"
+                className="underline hover:text-amber-500"
+              >
+                Ousmane-Mo
+              </a>
+              . All Rights Reserved.
+            </span>
             <ul className="flex items-center px-2 text-sm font-medium text-neutral-500">
               <li>
-                <a href="/" className="mx-2 hover:text-amber-500 hover:underline hover:underline-offset-2">Home</a>
+                <a
+                  href="/"
+                  className="mx-2 hover:text-amber-500 hover:underline hover:underline-offset-2"
+                >
+                  Home
+                </a>
               </li>
               <li>
-                  <a href="/leaderboard" className="mb-6 hover:text-amber-500 hover:underline hover:underline-offset-2">Leaderboard</a>
+                <a
+                  href="/leaderboard"
+                  className="mb-6 hover:text-amber-500 hover:underline hover:underline-offset-2"
+                >
+                  Leaderboard
+                </a>
               </li>
             </ul>
           </div>

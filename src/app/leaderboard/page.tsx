@@ -1,7 +1,7 @@
 "use client";
 import Table from "@/lib/components/leaderboard/leaderboard-table";
 import React, { useState, useEffect } from "react";
-import { Player } from "../page";
+import { Player } from "@/lib/types/game";
 
 const Leaderboard: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>([]);
